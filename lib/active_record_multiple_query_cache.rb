@@ -1,0 +1,4 @@
+require 'active_record_multiple_query_cache/version'
+
+module ActiveRecordMultipleQueryCache
+end
