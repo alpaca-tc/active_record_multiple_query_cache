@@ -7,9 +7,15 @@ development:
   <<: *default
   database: db/development.sqlite3
 
-test:
+test: &test
   <<: *default
   database: db/test.sqlite3
+
+db1_test:
+  <<: *test
+
+db2_test:
+  <<: *test
 
 production:
   <<: *default
