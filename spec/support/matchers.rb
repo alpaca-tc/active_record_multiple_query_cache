@@ -7,16 +7,21 @@ class BePerformed < RSpec::Matchers::BuiltIn::Be
     SQLCounter.clear_log
 
     event_proc.call
-    @actual_size = SQLCounter.log_all.size
+    @actual_queries = SQLCounter.log_all
+    @actual_size = @actual_queries.size
     @actual_size == expected
   end
 
   def failure_message
-    "expected #{expected} queries but is now #{@actual_size} queries"
+    "expected #{expected} queries but is now #{@actual_size} queries\n" + queries
   end
 
   def failure_message_when_negated
-    "expected #{expected} queries not to have changed but is now #{@actual_size} queries"
+    "expected #{expected} queries not to have changed but is now #{@actual_size} queries\n" + queries
+  end
+
+  def queries
+    (@actual_queries || []).join("\n")
   end
 
   def supports_block_expectations?

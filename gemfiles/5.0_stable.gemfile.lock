@@ -64,6 +64,7 @@ PATH
   specs:
     active_record_multiple_query_cache (0.1.1)
       activerecord (>= 4.2)
+      rack
 
 GEM
   remote: https://rubygems.org/
@@ -153,7 +154,6 @@ DEPENDENCIES
   appraisal
   bundler
   pry
-  rack
   rails!
   rake
   rspec
