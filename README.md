@@ -1,28 +1,27 @@
-# ActiverecordMultipleQueryCache
+# ActiveRecordMultipleQueryCache
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/activerecord_multiple_query_cache`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Enable the query_cache for your abstract base class inherited from ActiveRecord::Base.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'activerecord_multiple_query_cache'
+gem 'active_record_multiple_query_cache'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install activerecord_multiple_query_cache
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# your custom base class
+class ApplicationSlaveRecord < ActiveRecord::Base
+  self.abstract_class = true
+  establish_connection(:"slave_#{Rails.env}")
+end
+
+# config/initializers/active_record_multiple_query_cache.rb
+ActiveRecordMultipleQueryCache.install_query_cache('ApplicationSlaveRecord')
+```
 
 ## Development
 
@@ -32,7 +31,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/activerecord_multiple_query_cache.
+Bug reports and pull requests are welcome on GitHub at https://github.com/alpaca-tc/active_record_multiple_query_cache.
 
 ## License
 
