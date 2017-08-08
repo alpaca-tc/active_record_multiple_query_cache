@@ -1,5 +1,4 @@
 require 'active_record_multiple_query_cache/version'
-require 'active_record_multiple_query_cache/rails4_query_cache'
 
 module ActiveRecordMultipleQueryCache
   autoload :Rails4QueryCache, 'active_record_multiple_query_cache/rails4_query_cache'
