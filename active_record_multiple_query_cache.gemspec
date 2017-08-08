@@ -21,6 +21,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency('activerecord', '>= 4.2')
+
+  # for test
+  spec.add_development_dependency('sqlite3')
+  spec.add_development_dependency('rack')
+
   spec.add_development_dependency('bundler')
   spec.add_development_dependency('rake')
   spec.add_development_dependency('rspec')
