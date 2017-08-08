@@ -12,11 +12,8 @@ module ActiveRecordMultipleQueryCache
 
       executor.register_hook(hook)
     else
-      rails.configuration.app_middleware.insert_after(
-        '::ActionDispatch::Callbacks',
-        '::ActiveRecordMultipleQueryCache::Rails4QueryCache',
-        activerecord_base_class_name
-      )
+      middleware = ActiveRecordMultipleQueryCache::Rails4QueryCache.new(activerecord_base_class_name)
+      rails.configuration.app_middleware.insert_after('::ActionDispatch::Callbacks', middleware)
     end
   end
 end

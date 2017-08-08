@@ -3,11 +3,14 @@ require 'active_support/core_ext/string/inflections'
 
 module ActiveRecordMultipleQueryCache
   class Rails4QueryCache
-    def initialize(app, active_record_base_class)
+    def initialize(active_record_base_class)
       active_record_base_class = active_record_base_class.constantize if active_record_base_class.is_a?(String)
-
-      @app = app
       @active_record_base_class = active_record_base_class
+    end
+
+    def new(app)
+      @app = app
+      self
     end
 
     def call(env)
@@ -25,6 +28,14 @@ module ActiveRecordMultipleQueryCache
     rescue Exception
       restore_query_cache_settings(connection_id, enabled)
       raise
+    end
+
+    def name
+      self.class.name
+    end
+
+    def to_s
+      %{#<#{self.class} @active_record_class: "#{@active_record_base_class}">}
     end
 
     private
