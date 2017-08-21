@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ActiveRecordMultipleQueryCache::Rails4QueryCache do
   next if ActiveRecord.gem_version >= Gem::Version.new('5.0.0')
 
-  let(:instance) { described_class.new(app, active_record_base_class) }
+  let(:instance) { described_class.new(active_record_base_class).new(app) }
 
   let(:app) do
     -> (_) { [200, {}, [active_record_base_class.connection.query_cache_enabled]] }

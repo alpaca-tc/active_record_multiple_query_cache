@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe ActiveRecordMultipleQueryCache::Rails5QueryCache do
   next if ActiveRecord.gem_version < Gem::Version.new('5.0.0')
@@ -25,6 +25,10 @@ RSpec.describe ActiveRecordMultipleQueryCache::Rails5QueryCache do
 
     before do
       active_record_base_class.connection.enable_query_cache!
+    end
+
+    after do
+      active_record_base_class.connection.disable_query_cache!
     end
 
     let(:caching_pool) { active_record_base_class.connection_pool }
