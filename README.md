@@ -32,6 +32,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Testing
 
 ```
+bundle exec appraisal 4.2-stable bundle install
+bundle exec appraisal 5.0-stable bundle install
+bundle exec appraisal 5.1-stable bundle install
+
 bundle exec appraisal 4.2-stable rake all
 bundle exec appraisal 5.0-stable rake all
 bundle exec appraisal 5.1-stable rake all
